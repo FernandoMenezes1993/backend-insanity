@@ -9,7 +9,7 @@ var corsOptions = {
     header:{
         'Access-Control-Allow-Origin': `${process.env.URL_LOCAL}`
     },
-    origin: 'http://localhost:5173',
+    origin: `${process.env.URL_LOCAL}`,
     optionsSuccessStatus: 200 
 }
 //GET
