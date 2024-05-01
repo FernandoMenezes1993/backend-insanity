@@ -29,8 +29,7 @@ module.exports ={
         let json;
 
         try {
-            const response = await axios.get(`https://gameinfo.albiononline.com/api/gameinfo/guilds/${process.env.ID_GUILDA}/members`);
-            console.log('Dados recebidos:', response.data);
+            const response = await axios.get(`https://gameinfo.albiononline.com/api/gameinfo/guilds/${process.env.ID_GUILDA}/members`, { timeout: 200000 });
             json = response.data;
         } catch (error) {
             console.error('Erro ao fazer requisição:', error);
