@@ -13,6 +13,7 @@ var corsOptions = {
 }
 
 router.get("/user", userControllers.getAllUsers);
+router.post("/user/new", userControllers.addNewUser);
 
 
 module.exports = router;

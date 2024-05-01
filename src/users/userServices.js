@@ -16,5 +16,17 @@ module.exports ={
         
         const user = await Usuarios.find();
         return user;
+    },
+
+    seveNewUser:async(Name, Senha, Email, Cargo, Discordid)=>{
+        const newUser = new Usuarios ({
+            Name: Name,
+            Senha: Senha,
+            Email: Email,
+            Cargo: Cargo,
+            Discordid: Discordid
+        });
+        await newUser.save();
+        return newUser;
     }
 }
