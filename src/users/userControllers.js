@@ -26,11 +26,19 @@ module.exports ={
         res.json(newUser);
     },
     getAllMembres:async(req,res)=>{
-        let json;
+        let json= [];
 
         try {
             const response = await axios.get(`https://gameinfo.albiononline.com/api/gameinfo/guilds/${process.env.ID_GUILDA}/members`, { timeout: 200000 });
-            json = response.data;
+            const membros = response.data.length;
+
+            for(let i = 0; i < membros; i++){
+                let membro = {
+                    nome: response.data[i].Name,
+                    id: response.data[i].Id
+                }
+                json.push(membro);
+            }
         } catch (error) {
             console.error('Erro ao fazer requisição:', error);
         }
