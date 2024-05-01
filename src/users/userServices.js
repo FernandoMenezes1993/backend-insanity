@@ -1,3 +1,20 @@
+const mongoose = require("mongoose");
+
+mongoose.connect("mongodb+srv://insanityalbion:Xb8qqRnNTrDFrfAr@insanity-api.xswedqc.mongodb.net/?retryWrites=true&w=majority&appName=insanity-api");
+
+const Usuarios = mongoose.model("Usuarios", {
+    Name: String,
+    Senha: String,
+    Email: String,
+    Cargo: String,
+    Discordid: String
+});
+
 module.exports ={
     
+    getUsers: async()=>{
+        
+        const user = await Usuarios.find();
+        return user;
+    }
 }

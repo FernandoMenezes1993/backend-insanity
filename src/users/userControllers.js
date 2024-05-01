@@ -1,5 +1,13 @@
+const userServices = require('./userServices');
+
 module.exports ={
     getAllUsers:async(req, res)=>{
-        res.send('Olá, Mundo!');
+        let json
+
+        let users = await userServices.getUsers();
+
+        json =  users
+        
+        res.json(json);
     }
 }
