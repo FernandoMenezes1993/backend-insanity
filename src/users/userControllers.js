@@ -1,5 +1,7 @@
+require('dotenv').config({path: '.env'});
 const userServices = require('./userServices');
 
+const axios = require('axios');
 const bodyParser = require('body-parser');
 module.exports ={
     getAllUsers:async(req, res)=>{
@@ -22,5 +24,17 @@ module.exports ={
 
         const newUser = await userServices.seveNewUser(Name, Senha, Email, Cargo, Discordid);        
         res.json(newUser);
+    },
+    getAllMembres:async(req,res)=>{
+        let json;
+
+        try {
+            const response = await axios.get(`https://gameinfo.albiononline.com/api/gameinfo/guilds/${process.env.ID_GUILDA}/members`);
+            console.log('Dados recebidos:', response.data);
+            json = response.data;
+        } catch (error) {
+            console.error('Erro ao fazer requisição:', error);
+        }
+        res.json(json);
     }
 }

@@ -11,9 +11,17 @@ var corsOptions = {
     origin: 'http://localhost:5173',
     optionsSuccessStatus: 200 
 }
+//GET
 
 router.get("/user", userControllers.getAllUsers);
+
+router.get("/playresGuild", userControllers.getAllMembres);
+//Pegar o nome e ID de todos os membros da Insanity BR
+
+//POST
+
 router.post("/user/new", userControllers.addNewUser);
+//Cadastrar novo usuario
 
 
 module.exports = router;
