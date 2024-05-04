@@ -25,5 +25,7 @@ router.get("/playresGuild", cors(corsOptions),userControllers.getAllMembres);
 router.post("/user/new", cors(corsOptions), userControllers.addNewUser);
 //Cadastrar novo usuario
 
+router.get("/checks/name/:Nickname", cors(corsOptions), userControllers.checksName);
+
 
 module.exports = router;

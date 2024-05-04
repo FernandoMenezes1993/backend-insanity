@@ -43,5 +43,26 @@ module.exports ={
             console.error('Erro ao fazer requisição:', error);
         }
         res.json(json);
+    },
+    checksName:async(req,res)=>{
+        let json={
+            length:0
+        };
+        let Nome = req.params.Nickname;
+        const nameChecks = await userServices.checksNickname(Nome);
+        
+        if (nameChecks.length > 0) {
+            //usuario ja cadastrado
+            json={
+                length:0
+            };
+        }else{
+            //usuario não cadastrado
+            json={
+                length:1
+            };
+        }
+            
+        res.json(json);
     }
 }

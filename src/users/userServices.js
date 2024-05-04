@@ -12,8 +12,7 @@ const Usuarios = mongoose.model("Usuarios", {
 
 module.exports ={
     
-    getUsers: async()=>{
-        
+    getUsers: async()=>{        
         const user = await Usuarios.find();
         return user;
     },
@@ -28,5 +27,10 @@ module.exports ={
         });
         await newUser.save();
         return newUser;
+    },
+
+    checksNickname:async(Nome)=>{
+        const nomeVerificado = Usuarios.find({ Name: Nome });
+        return nomeVerificado;
     }
 }
