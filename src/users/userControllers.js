@@ -91,7 +91,7 @@ module.exports ={
             const isValidPassword = await bcrypt.compare(SenhaNoHash.trim(), senhaHash.trim());
             if(isValidPassword){
 
-                const secret = process.env.SECRET
+                const secret = `${process.env.SECRET}`
                 const token = jwt.sign({
                     idUser: id,
                     User: Nome,
