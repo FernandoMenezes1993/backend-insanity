@@ -15,17 +15,20 @@ var corsOptions = {
 }
 //GET
 
-router.get("/user", userControllers.getAllUsers);
+router.get("/userseila", userControllers.getAllUsers);
 
 router.get("/playresGuild", cors(corsOptions),userControllers.getAllMembres);
 //Pegar o nome e ID de todos os membros da Insanity BR
+
+router.get("/checks/name/:Nickname", cors(corsOptions), userControllers.checksName);
+//Verificar se o Nickname digitado já está cadastrado no mongoDB
+
+router.get("/checks/user/:Nickname/:Senha", cors(corsOptions), userControllers.checkUser);
+
 
 //POST
 
 router.post("/user/new", cors(corsOptions), userControllers.addNewUser);
 //Cadastrar novo usuario
-
-router.get("/checks/name/:Nickname", cors(corsOptions), userControllers.checksName);
-
 
 module.exports = router;

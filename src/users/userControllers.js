@@ -2,7 +2,9 @@ require('dotenv').config({path: '.env'});
 const userServices = require('./userServices');
 
 const axios = require('axios');
+const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
+const jwt = require('jsonwebtoken');
 module.exports ={
     getAllUsers:async(req, res)=>{
         let json
@@ -22,7 +24,10 @@ module.exports ={
         let Cargo= "Membro"
         let Discordid= req.body.Discordid
 
-        const newUser = await userServices.seveNewUser(Name, Senha, Email, Cargo, Discordid);        
+        let senhaHash = await bcrypt.hash(Senha, 10);
+
+
+        const newUser = await userServices.seveNewUser(Name, senhaHash, Email, Cargo, Discordid);        
         res.json(newUser);
     },
     getAllMembres:async(req,res)=>{
@@ -63,6 +68,57 @@ module.exports ={
             };
         }
             
+        res.json(json);
+    },
+    checkUser:async(req,res)=>{
+        let json={
+            res: 0
+        }
+
+        let Nome = req.params.Nickname;
+        let SenhaNoHash = req.params.Senha;
+
+        const nameChecks = await userServices.checksNickname(Nome);
+
+        if (nameChecks.length > 0) {
+            //Usuario encontrado
+            let senhaHash = nameChecks[0].Senha;
+            let id = nameChecks[0]._id.toString();
+            let Cargo = nameChecks[0].Cargo;
+            let Email = nameChecks[0].Email || "None";
+            let DiscordID = nameChecks[0].Discordid || "None"
+
+            const isValidPassword = await bcrypt.compare(SenhaNoHash.trim(), senhaHash.trim());
+            if(isValidPassword){
+
+                const secret = process.env.SECRET
+                const token = jwt.sign({
+                    idUser: id,
+                    User: Nome,
+                    Cargo: Cargo,
+                    Email: Email,
+                    DiscordID: DiscordID
+                },
+                secret,{
+                    expiresIn: 60 // 1 minutos
+                });
+                //Senha ok
+                json={
+                    res: 200,
+                    token: token
+                }
+            }else{
+                //Senha errada
+                json={
+                    res: 502
+                }
+            }
+        }else{
+            // Usuario não encontrado
+            json={
+                res: 404
+            }
+        }
         res.json(json);
     }
 }

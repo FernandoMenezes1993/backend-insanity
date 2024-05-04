@@ -17,10 +17,10 @@ module.exports ={
         return user;
     },
 
-    seveNewUser:async(Name, Senha, Email, Cargo, Discordid)=>{
+    seveNewUser:async(Name, senhaHash, Email, Cargo, Discordid)=>{
         const newUser = new Usuarios ({
             Name: Name,
-            Senha: Senha,
+            Senha: senhaHash,
             Email: Email,
             Cargo: Cargo,
             Discordid: Discordid
