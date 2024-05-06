@@ -5,6 +5,7 @@ const router = express.Router();
 const cors = require('cors');
 
 const userControllers = require('./users/userControllers');
+const regearControllers = require('./Regear/regearControlles')
 
 var corsOptions = {
     header:{
@@ -32,5 +33,9 @@ router.get("/checks/user/:Nickname/:Senha", cors(corsOptions), userControllers.c
 //POST
 router.post("/user/new", cors(corsOptions), userControllers.addNewUser);
 //Cadastrar novo usuario
+
+
+// Rotas dos Regear
+router.post("/create/regear",cors(corsOptions), regearControllers.createRegear);
 
 module.exports = router;
