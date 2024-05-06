@@ -15,7 +15,7 @@ var corsOptions = {
 }
 //GET
 
-router.get("/userseila", userControllers.getAllUsers);
+router.get("/acorda", userControllers.getAllUsers);
 
 router.get("/playresGuild", cors(corsOptions),userControllers.getAllMembres);
 //Pegar o nome e ID de todos os membros da Insanity BR

@@ -11,7 +11,10 @@ module.exports ={
 
         let users = await userServices.getUsers();
 
-        json =  users
+        json = {
+            Dev: "Fernando Menezes",
+            Nickname: "SNagini"
+        }
         
         res.json(json);
     },
@@ -100,7 +103,7 @@ module.exports ={
                     DiscordID: DiscordID
                 },
                 secret,{
-                    expiresIn: 60 // 1 minutos
+                    expiresIn: 1800 // 1 minutos
                 });
                 //Senha ok
                 json={
