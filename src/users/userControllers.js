@@ -103,7 +103,7 @@ module.exports ={
                     DiscordID: DiscordID
                 },
                 secret,{
-                    expiresIn: 1800 // 1 minutos
+                    expiresIn: 60 // 1 minutos
                 });
                 //Senha ok
                 json={
@@ -121,6 +121,35 @@ module.exports ={
             json={
                 res: 404
             }
+        }
+        res.json(json);
+    },
+    checkToken:async(req,res)=>{
+        let json={};
+        const SECRET = process.env.SECRET
+
+        let token = req.params.token
+        try {
+            const decodeToken = jwt.verify(token, SECRET);
+            json={
+                res: 200,
+                idUser: decodeToken.idUser,
+                User: decodeToken.User,
+                Cargo: decodeToken.Cargo,
+                Email: decodeToken.Email,
+                DiscordID: decodeToken.DiscordID,
+                token
+            };
+        } catch (error) {
+            json={
+                res: 502,
+                idUser: 'None',
+                User: 'None',
+                Cargo: 'None',
+                Email: 'None',
+                DiscordID: 'None',
+                token: 'None'
+            };
         }
         res.json(json);
     }

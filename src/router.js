@@ -13,9 +13,13 @@ var corsOptions = {
     origin: `${process.env.URL_LOCAL}`,
     optionsSuccessStatus: 200 
 }
-//GET
 
-router.get("/acorda", userControllers.getAllUsers);
+//Verificar token
+router.get('/checks/:token', cors(corsOptions), userControllers.checkToken);
+
+// Rotas dos usuarios
+//GET
+router.get("/acorda", cors(corsOptions), userControllers.getAllUsers);
 
 router.get("/playresGuild", cors(corsOptions),userControllers.getAllMembres);
 //Pegar o nome e ID de todos os membros da Insanity BR
@@ -25,9 +29,7 @@ router.get("/checks/name/:Nickname", cors(corsOptions), userControllers.checksNa
 
 router.get("/checks/user/:Nickname/:Senha", cors(corsOptions), userControllers.checkUser);
 
-
 //POST
-
 router.post("/user/new", cors(corsOptions), userControllers.addNewUser);
 //Cadastrar novo usuario
 
