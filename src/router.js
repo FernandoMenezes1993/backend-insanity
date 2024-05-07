@@ -41,5 +41,9 @@ router.post("/create/regear",cors(corsOptions), regearControllers.createRegear);
 //Cadastrar um Re-gear
 
 router.get('/get/regear/:Nickname', cors(corsOptions), regearControllers.getRegear);
+//Pega todas as solicitações de regear que esteja no Nickname
+
+router.get('/regear/:id', cors(corsOptions), regearControllers.getRegerId);
+//Pega um regear pelo id para mostrar na pagina do pedido
 
 module.exports = router;
