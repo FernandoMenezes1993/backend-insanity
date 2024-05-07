@@ -4,16 +4,26 @@ mongoose.connect("mongodb+srv://insanityalbion:Xb8qqRnNTrDFrfAr@insanity-api.xsw
 
 const Regear = mongoose.model("Regear", {
     Name: String,
-    Link: String
+    Link: String,
+    Responsavel: String,
+    Class: String,
+    Status: String
 });
 
 module.exports ={
-    saveReger:async(Name, Link)=>{
+    saveReger:async(Name, Link, Responsavel, Class, Status)=>{
         const newRegear = new Regear ({
             Name: Name,
-            Link: Link
+            Link: Link,
+            Responsavel: Responsavel,
+            Class: Class,
+            Status: Status
         });
         await newRegear.save();
         return newRegear;
+    },
+    regears:async(Nickname)=>{
+        const regears = Regear.find( { Name: Nickname } );
+        return regears;
     }
 }

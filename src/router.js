@@ -29,6 +29,7 @@ router.get("/checks/name/:Nickname", cors(corsOptions), userControllers.checksNa
 //Verificar se o Nickname digitado já está cadastrado no mongoDB
 
 router.get("/checks/user/:Nickname/:Senha", cors(corsOptions), userControllers.checkUser);
+//Verificar credencias do usuario
 
 //POST
 router.post("/user/new", cors(corsOptions), userControllers.addNewUser);
@@ -37,5 +38,8 @@ router.post("/user/new", cors(corsOptions), userControllers.addNewUser);
 
 // Rotas dos Regear
 router.post("/create/regear",cors(corsOptions), regearControllers.createRegear);
+//Cadastrar um Re-gear
+
+router.get('/get/regear/:Nickname', cors(corsOptions), regearControllers.getRegear);
 
 module.exports = router;
