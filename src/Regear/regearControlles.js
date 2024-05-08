@@ -11,6 +11,8 @@ module.exports ={
         let Responsavel = "Insanity BR"
         let Class= req.body.Class
         let Status = "Pendente"
+        let Data = req.body.Data
+        let Dia = req.body.Dia
         let Cabeca
         let Peitoral
         let Bota
@@ -31,7 +33,7 @@ module.exports ={
             res.status(500).send("500");
             return;
         }
-        const newRegear = await regearServices.saveReger(Name, Link, Responsavel, Class, Status, MainHand, OffHand, Cabeca, Peitoral, Bota);
+        const newRegear = await regearServices.saveReger(Name, Link, Responsavel, Class, Status, MainHand, OffHand, Cabeca, Peitoral, Bota, Data, Dia);
 
         res.json(200);
     },
@@ -46,7 +48,6 @@ module.exports ={
         let id = req.params.id
 
         const regear = await regearServices.getRegear(id);
-        console.log(regear)
         res.json(regear);
     }
 }

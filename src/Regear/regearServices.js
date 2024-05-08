@@ -12,11 +12,13 @@ const Regear = mongoose.model("Regear", {
     OffHand: String,
     Cabeca: String,
     Peitoral: String,
-    Bota: String
+    Bota: String,
+    Data: String,
+    Dia: String
 });
 
 module.exports ={
-    saveReger:async(Name, Link, Responsavel, Class, Status, MainHand, OffHand, Cabeca, Peitoral, Bota)=>{
+    saveReger:async(Name, Link, Responsavel, Class, Status, MainHand, OffHand, Cabeca, Peitoral, Bota, Data, Dia)=>{
         const newRegear = new Regear ({
             Name: Name,
             Link: Link,
@@ -27,7 +29,9 @@ module.exports ={
             OffHand: OffHand,
             Cabeca: Cabeca,
             Peitoral: Peitoral,
-            Bota: Bota
+            Bota: Bota,
+            Data: Data,
+            Dia: Dia
         });
         await newRegear.save();
         return newRegear;
