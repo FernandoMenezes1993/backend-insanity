@@ -31,19 +31,21 @@ router.get("/checks/name/:Nickname", cors(corsOptions), userControllers.checksNa
 router.get("/checks/user/:Nickname/:Senha", cors(corsOptions), userControllers.checkUser);
 //Verificar credencias do usuario
 
-//POST
-router.post("/user/new", cors(corsOptions), userControllers.addNewUser);
-//Cadastrar novo usuario
-
-
-// Rotas dos Regear
-router.post("/create/regear",cors(corsOptions), regearControllers.createRegear);
-//Cadastrar um Re-gear
-
 router.get('/get/regear/:Nickname', cors(corsOptions), regearControllers.getRegear);
 //Pega todas as solicitações de regear que esteja no Nickname
 
 router.get('/regear/:id', cors(corsOptions), regearControllers.getRegerId);
 //Pega um regear pelo id para mostrar na pagina do pedido
+
+router.get("/get/all/regear", cors(corsOptions), regearControllers.getAllRegear);
+
+
+
+//POST
+router.post("/user/new", cors(corsOptions), userControllers.addNewUser);
+//Cadastrar novo usuario
+// Rotas dos Regear
+router.post("/create/regear",cors(corsOptions), regearControllers.createRegear);
+//Cadastrar um Re-gear
 
 module.exports = router;

@@ -18,22 +18,27 @@ module.exports ={
         let Bota
         let MainHand
         let OffHand
+        let capa
+        let bolsa
 
         const parts = Link.split('/');
         const lastParameter = parts[parts.length - 1];
         try {
             const resposta = await axios.get(`https://gameinfo.albiononline.com/api/gameinfo/events/${lastParameter}`);
+
             MainHand = resposta.data.Victim.Equipment.MainHand ? resposta.data.Victim.Equipment.MainHand.Type : "Null";
             OffHand = resposta.data.Victim.Equipment.OffHand ? resposta.data.Victim.Equipment.OffHand.Type : "Null";
             Cabeca = resposta.data.Victim.Equipment.Head ? resposta.data.Victim.Equipment.Head.Type : "Null";
             Peitoral = resposta.data.Victim.Equipment.Armor ? resposta.data.Victim.Equipment.Armor.Type : "Null";
             Bota = resposta.data.Victim.Equipment.Shoes ? resposta.data.Victim.Equipment.Shoes.Type : "Null";
+            capa = resposta.data.Victim.Equipment.Cape ? resposta.data.Victim.Equipment.Cape.Type : "Null";
+            bolsa = resposta.data.Victim.Equipment.Bag ? resposta.data.Victim.Equipment.Bag.Type : "Null";
 
         } catch (error) {
             res.status(500).send("500");
             return;
         }
-        const newRegear = await regearServices.saveReger(Name, Link, Responsavel, Class, Status, MainHand, OffHand, Cabeca, Peitoral, Bota, Data, Dia);
+        const newRegear = await regearServices.saveReger(Name, Link, Responsavel, Class, Status, MainHand, OffHand, Cabeca, Peitoral, Bota, Data, Dia, capa, bolsa);
 
         res.json(200);
     },
@@ -49,5 +54,10 @@ module.exports ={
 
         const regear = await regearServices.getRegear(id);
         res.json(regear);
+    },
+    getAllRegear:async(req, res)=>{
+
+        const allRegears = await regearServices.getRegears();
+        res.json(allRegears);
     }
 }

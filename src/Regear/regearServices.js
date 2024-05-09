@@ -14,11 +14,13 @@ const Regear = mongoose.model("Regear", {
     Peitoral: String,
     Bota: String,
     Data: String,
-    Dia: String
+    Dia: String,
+    Capa: String,
+    Bolsa: String
 });
 
 module.exports ={
-    saveReger:async(Name, Link, Responsavel, Class, Status, MainHand, OffHand, Cabeca, Peitoral, Bota, Data, Dia)=>{
+    saveReger:async(Name, Link, Responsavel, Class, Status, MainHand, OffHand, Cabeca, Peitoral, Bota, Data, Dia, Capa, Bolsa)=>{
         const newRegear = new Regear ({
             Name: Name,
             Link: Link,
@@ -31,7 +33,9 @@ module.exports ={
             Peitoral: Peitoral,
             Bota: Bota,
             Data: Data,
-            Dia: Dia
+            Dia: Dia,
+            Capa: Capa,
+            Bolsa: Bolsa
         });
         await newRegear.save();
         return newRegear;
@@ -49,5 +53,9 @@ module.exports ={
             // Lidar com o erro de forma adequada, possivelmente lançando novamente ou retornando null
             throw error; // ou return null;
         }
+    },
+    getRegears:async()=>{
+        const regears = await Regear.find();
+        return regears;
     }
 }
