@@ -76,5 +76,6 @@ module.exports ={
         let Responsavel = req.body.Responsavel
 
         const attRegear = await regearServices.regearFinalizado(id, MsgStaff, Status, DataFinalizado, Responsavel);
+        res.json(attRegear);
     }
 }
