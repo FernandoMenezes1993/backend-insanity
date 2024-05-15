@@ -103,7 +103,7 @@ module.exports ={
                     DiscordID: DiscordID
                 },
                 secret,{
-                    expiresIn: 1800 // 1 minutos
+                    expiresIn: 18000 // 1 minutos
                 });
                 //Senha ok
                 json={

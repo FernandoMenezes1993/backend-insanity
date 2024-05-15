@@ -38,6 +38,7 @@ router.get('/regear/:id', cors(corsOptions), regearControllers.getRegerId);
 //Pega um regear pelo id para mostrar na pagina do pedido
 
 router.get("/get/all/regear", cors(corsOptions), regearControllers.getAllRegear);
+//Pega todos os regear 
 
 
 
@@ -47,5 +48,12 @@ router.post("/user/new", cors(corsOptions), userControllers.addNewUser);
 // Rotas dos Regear
 router.post("/create/regear",cors(corsOptions), regearControllers.createRegear);
 //Cadastrar um Re-gear
+
+
+//UPDATE
+router.put("/regear/att/:id", cors(corsOptions), regearControllers.attStatusRegar);
+//Atualiza o status e o responsavel pelo regear
+
+router.put("/regear/finalizar/:id", cors(corsOptions), regearControllers.finalizaRegar);
 
 module.exports = router;

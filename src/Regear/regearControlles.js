@@ -49,15 +49,32 @@ module.exports ={
         res.json(regears);
     },
     getRegerId:async(req, res)=>{
-
         let id = req.params.id
-
         const regear = await regearServices.getRegear(id);
         res.json(regear);
     },
     getAllRegear:async(req, res)=>{
-
         const allRegears = await regearServices.getRegears();
         res.json(allRegears);
+    },
+    attStatusRegar:async(req,res)=>{
+        let id = req.params.id
+        let Responsavel= req.body.Responsavel
+        let Status = req.body.Status
+        let DataAceito = req.body.DataAceito
+
+
+        const attRegear = await regearServices.attRegearAceito(id, Responsavel, Status, DataAceito);
+        res.json(attRegear);
+    },
+    finalizaRegar:async(req, res)=>{
+        let id = req.params.id
+
+        let MsgStaff = req.body.MsgStaff
+        let Status = req.body.Status
+        let DataFinalizado = req.body.DataFinalizado
+        let Responsavel = req.body.Responsavel
+
+        const attRegear = await regearServices.regearFinalizado(id, MsgStaff, Status, DataFinalizado, Responsavel);
     }
 }

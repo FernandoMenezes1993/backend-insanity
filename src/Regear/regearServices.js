@@ -16,7 +16,10 @@ const Regear = mongoose.model("Regear", {
     Data: String,
     Dia: String,
     Capa: String,
-    Bolsa: String
+    Bolsa: String,
+    DataAceito: String,
+    DataFinalizado: String,
+    MsgStaff: String
 });
 
 module.exports ={
@@ -35,7 +38,10 @@ module.exports ={
             Data: Data,
             Dia: Dia,
             Capa: Capa,
-            Bolsa: Bolsa
+            Bolsa: Bolsa,
+            DataAceito: "None",
+            DataFinalizado: "None",
+            MsgStaff: "None"
         });
         await newRegear.save();
         return newRegear;
@@ -57,5 +63,22 @@ module.exports ={
     getRegears:async()=>{
         const regears = await Regear.find();
         return regears;
+    },
+    attRegearAceito:async(id, Responsavel, Status, DataAceito)=>{
+        const updateReger = {
+            Responsavel: Responsavel,
+            Status: Status,
+            DataAceito: DataAceito
+        }
+        const updatedRegear = await Regear.findByIdAndUpdate(id, updateReger);        
+    },
+    regearFinalizado:async(id, MsgStaff, Status, DataFinalizado, Responsavel)=>{
+        const updateReger = {
+            MsgStaff: MsgStaff,
+            Status: Status,
+            DataFinalizado: DataFinalizado,
+            Responsavel: Responsavel           
+        }
+        const updatedRegear = await Regear.findByIdAndUpdate(id, updateReger);
     }
 }
