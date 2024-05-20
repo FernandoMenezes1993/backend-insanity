@@ -38,6 +38,9 @@ router.get('/regear/:id', cors(corsOptions), regearControllers.getRegerId);
 //Pega um regear pelo id para mostrar na pagina do pedido
 
 router.get("/get/all/regear", cors(corsOptions), regearControllers.getAllRegear);
+//Pega todos os regear
+
+router.get("/get/all/regear/staff", cors(corsOptions), regearControllers.getAllRegearStaff);
 //Pega todos os regear 
 
 

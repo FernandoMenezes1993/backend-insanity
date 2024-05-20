@@ -77,5 +77,18 @@ module.exports ={
 
         const attRegear = await regearServices.regearFinalizado(id, MsgStaff, Status, DataFinalizado, Responsavel);
         res.json(attRegear);
+    },
+    getAllRegearStaff:async(req, res)=>{
+        let json =[];
+        const allRegears = await regearServices.getRegears();
+        let regears = allRegears.length
+        
+
+        for(let i =0; i < regears; i++){
+            if(allRegears[i].Status == "Pendente" || allRegears[i].Status == "Aceito"){
+                json.push(allRegears[i])
+            }
+        }
+        res.json(json);
     }
 }
