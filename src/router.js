@@ -41,7 +41,7 @@ router.get("/get/all/regear", cors(corsOptions), regearControllers.getAllRegear)
 //Pega todos os regear
 
 router.get("/get/all/regear/staff", cors(corsOptions), regearControllers.getAllRegearStaff);
-//Pega todos os regear 
+//Pega todos os regear aceitos e pendentes para a staff
 
 
 
